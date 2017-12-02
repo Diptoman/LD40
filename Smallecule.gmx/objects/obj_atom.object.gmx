@@ -28,6 +28,9 @@
             <string>alarm[0] = obj_control._turnTimer;
 
 _direction = "none";
+
+TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 4, 0, 1.2);
+TweenFire(id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 4, obj_control._turnTimer / 4 + obj_control._turnTimer / 8, 1.2, 1);
 </string>
           </argument>
         </arguments>
@@ -86,19 +89,23 @@ switch(_direction)
         break;
         
     case "right":
-        x += obj_control._gridSize;
+        TweenFire(id, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, x, x + obj_control._gridSize);
+        //x += obj_control._gridSize;
         break;
         
     case "left":
-        x -= obj_control._gridSize;
+        TweenFire(id, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, x, x - obj_control._gridSize);
+        //x -= obj_control._gridSize;
         break;
         
     case "up":
-        y -= obj_control._gridSize;
+        TweenFire(id, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, y, y - obj_control._gridSize);
+        //y -= obj_control._gridSize;
         break;
         
     case "down":
-        y += obj_control._gridSize;
+        TweenFire(id, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, y, y + obj_control._gridSize);
+        //y += obj_control._gridSize;
         break;
 }
 </string>

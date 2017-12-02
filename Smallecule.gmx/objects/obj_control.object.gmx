@@ -60,7 +60,7 @@ _currentPathPoint = -1;
           <argument>
             <kind>1</kind>
             <string>///Turn data
-_turnTimer = 60;
+_turnTimer = 30;
 </string>
           </argument>
         </arguments>
