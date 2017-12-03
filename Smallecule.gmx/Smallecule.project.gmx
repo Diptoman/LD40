@@ -104,10 +104,13 @@
     <sprite>sprites\spr_binder</sprite>
     <sprite>sprites\spr_bond</sprite>
     <sprite>sprites\spr_rotator</sprite>
+    <sprite>sprites\UI_Bottom</sprite>
+    <sprite>sprites\UI_Side</sprite>
+    <sprite>sprites\spr_GridBase</sprite>
+    <sprite>sprites\Spr_UI_Button</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
-    <background>background\bg_GridCircle</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
