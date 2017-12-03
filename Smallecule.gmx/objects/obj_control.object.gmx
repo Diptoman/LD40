@@ -25,23 +25,8 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Grid data
-_gridColumns = 16;
-_gridRows = 12;
-_gridSize = 48;
-_gridOffsetX = 48;
-_gridOffsetY = 96;
-
-//Mouse
-_currentRow = -1;
-_currentColumn = -1;
-_isDraggingPath = false;
-
-//Path point
-_currentPathPoint = -1;
-
-//What is selected
-_selected = "path";
+            <string>///Turn data
+_turnTimer = 30;
 </string>
           </argument>
         </arguments>
@@ -62,8 +47,23 @@ _selected = "path";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Turn data
-_turnTimer = 30;
+            <string>///Grid data
+_gridColumns = 16;
+_gridRows = 12;
+_gridSize = 48;
+_gridOffsetX = 48;
+_gridOffsetY = 96;
+
+//Mouse
+_currentRow = -1;
+_currentColumn = -1;
+_isDraggingPath = false;
+
+//Path point
+_currentPathPoint = -1;
+
+//What is selected
+_selected = "path";
 </string>
           </argument>
         </arguments>
@@ -186,6 +186,39 @@ _currentPathPoint = -1;
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="54">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>collPrim = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_item_parent, false, false);
+collSec = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_pathPoint, false, false);
+
+if (collPrim &gt; 0)
+{
+    with (collPrim) instance_destroy();
+}
+else if (collSec &gt; 0)
+{
+    with (collSec) instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="53">
       <action>
         <libid>1</libid>
@@ -208,7 +241,7 @@ if (_selected == "path")
 {
 if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
 {
-    _currentPathPoint = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_pathPoint, false, false)
+    _currentPathPoint = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_pathPoint, false, false);
     
     if (_currentPathPoint &lt;= 0)
     {
