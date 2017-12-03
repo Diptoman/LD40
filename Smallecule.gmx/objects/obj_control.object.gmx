@@ -118,7 +118,7 @@ if (_selected == "path")
 {
 if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
 {
-    current2ndPathPoint = collision_rectangle(_gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + _currentRow*_gridSize, _gridOffsetX + (_currentColumn + 1)*_gridSize, _gridOffsetY + (_currentRow + 1)*_gridSize, obj_pathPoint, false, false)
+    current2ndPathPoint = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_pathPoint, false, false);
     
     if (_currentPathPoint &gt; 0) //Path is being dragged from a point
     {
@@ -164,9 +164,9 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
                 }
                 
             }
-            else //If there is a point, make sure there is no in
+            else //If there is a point, make sure there is no in, and that it's not the same point
             {
-                if (current2ndPathPoint._in == "")
+                if ((current2ndPathPoint._in == "") &amp;&amp; (current2ndPathPoint != _currentPathPoint))
                 {
                     //Set in and outs
                     var columnDist = current2ndPathPoint._column - _currentPathPoint._column;
