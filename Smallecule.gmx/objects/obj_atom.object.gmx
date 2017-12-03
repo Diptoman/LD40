@@ -109,11 +109,30 @@ if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == fals
                         _isMolecule = true;
                         _isLead = true;
                         ds_list_add(_bondList, collMol);
+                        
+                        if (ds_list_size(collMol._bondList) &gt; 0)
+                        {
+                            for(i = 0; i &lt; ds_list_size(collMol._bondList); i++)
+                            {
+                                if (ds_list_find_value(collMol._bondList, i) != id)
+                                    ds_list_add(_bondList, ds_list_find_value(collMol._bondList, i));
+                            }
+                        }
+                        
                         collMol._isMolecule = true;
                         collMol._isLead = false;
                         collMol._parent = id;
                         collMol.depth = depth + 1;
                         ds_list_add(collMol._bondList, id);
+                        
+                        if (ds_list_size(_bondList) &gt; 0)
+                        {
+                            for(i = 0; i &lt; ds_list_size(_bondList); i++)
+                            {
+                                if (ds_list_find_value(_bondList, i) != collMol.id)
+                                    ds_list_add(collMol._bondList, ds_list_find_value(_bondList, i));
+                            }
+                        }
                     }
                 }
         }
