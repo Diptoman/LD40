@@ -111,6 +111,7 @@
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
+    <background>background\tl_safe</background>
   </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
@@ -187,7 +188,8 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_test</room>
+    <room>rooms\rm_new</room>
+    <room>rooms\room3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
