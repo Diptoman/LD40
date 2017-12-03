@@ -105,7 +105,10 @@
     <sprite>sprites\spr_bond</sprite>
     <sprite>sprites\spr_rotator</sprite>
   </sprites>
-  <backgrounds name="background"/>
+  <backgrounds name="background">
+    <background>background\background0</background>
+    <background>background\bg_GridCircle</background>
+  </backgrounds>
   <paths name="paths"/>
   <scripts name="scripts">
     <scripts name="TweenGMS">
