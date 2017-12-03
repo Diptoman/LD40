@@ -32,6 +32,7 @@ _direction = "none";
 
 _isMolecule = false;
 _isLead = true;
+_leaderId = id;
 _parent = -1;
 _bondList = ds_list_create();
 _immediateBondList = ds_list_create();
@@ -40,6 +41,62 @@ _active = true;
 
 TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 4, 0, 1.2);
 TweenFire(id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 4, obj_control._turnTimer / 4 + obj_control._turnTimer / 8, 1.2, 1);
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="1" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var i, atom;
+
+for (i = 0; i &lt; ds_list_size(_bondList); i++)
+{
+    atom = ds_list_find_value(_bondList, i);
+    with (atom) instance_destroy();
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="2" enumb="2">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>with (_leaderId)
+        instance_destroy();
+        
+if (instance_exists((_deathColl._leaderId)))
+    {}
 </string>
           </argument>
         </arguments>
@@ -90,8 +147,9 @@ TweenFire(id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 4, 
     }
 }
 else
-    {
-    obj_control._winCondition = 1000;}
+{
+    obj_control._winCondition = 1000;
+}
 </string>
           </argument>
         </arguments>
@@ -202,13 +260,16 @@ if ((((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == fal
                     {
                         _isMolecule = true;
                         _isLead = true;
+                        _leaderId = id;
                         ds_list_add(_bondList, collMol);
                         ds_list_add(_immediateBondList, collMol);
+                        collMol._leaderId = id;
                         
                         if (ds_list_size(collMol._bondList) &gt; 0)
                         {
                             for(i = 0; i &lt; ds_list_size(collMol._bondList); i++)
                             {
+                                (ds_list_find_value(collMol._bondList, i))._leaderId = id;
                                 if (ds_list_find_value(collMol._bondList, i) != id)
                                     ds_list_add(_bondList, ds_list_find_value(collMol._bondList, i));
                             }
@@ -273,6 +334,8 @@ if (((_isMolecule == true) &amp;&amp; (_isLead == true)) &amp;&amp; (_active == 
             
             _rotating = true;
              
+            if (instance_exists(atom))
+            {
             switch(_direction)
             {
                 case "":
@@ -310,6 +373,7 @@ if (((_isMolecule == true) &amp;&amp; (_isLead == true)) &amp;&amp; (_active == 
                     TweenFire(atom, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.y, y + obj_control._gridSize + lengthdir_y(dist, rotAngle));
                     break;
             }
+            }
         }
     }
 }
@@ -337,6 +401,8 @@ if (((_isMolecule == true) &amp;&amp; (_isLead == true)) &amp;&amp; (_active == 
  
 if ((_isLead == true) &amp;&amp; (_active == true))
 {
+    if (instance_exists(id))
+    {
     switch(_direction)
     {
         case "":
@@ -362,13 +428,16 @@ if ((_isLead == true) &amp;&amp; (_active == true))
             //y += obj_control._gridSize;
             break;
     }
+    }
     
     var i;
     if (_rotating == false)
     {
     for(i = 0; i &lt; ds_list_size(_bondList); i++)
     {
-        var subAtom = ds_list_find_value(_bondList, i);        
+        var subAtom = ds_list_find_value(_bondList, i);   
+        if (instance_exists(subAtom))
+        {     
         switch(_direction)
         {
             case "":
@@ -394,8 +463,42 @@ if ((_isLead == true) &amp;&amp; (_active == true))
                 //y += obj_control._gridSize;
                 break;
         }
+        }
     }
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Overlap explosion
+_deathColl = collision_point(x, y, obj_atom, 0, 1);
+
+if (_deathColl &gt; 0)
+{
+    //if (alarm[2] &lt; 0)
+        //alarm[2] = 1;
+        with (_leaderId)
+            instance_destroy();
+        
+        with (_deathColl._leaderId)
+            instance_destroy();
 }
 </string>
           </argument>
@@ -458,9 +561,12 @@ else
 var i;
 for(i = 0; i &lt; ds_list_size(_immediateBondList); i++)
 {
-    angle = point_direction(x, y, ds_list_find_value(_bondList, i).x, ds_list_find_value(_bondList, i).y);
-    draw_sprite_ext(spr_bond, 0, x, y, 1, 1, angle, c_white, 1);
+    if (instance_exists(ds_list_find_value(_bondList, i)))
+     {   angle = point_direction(x, y, ds_list_find_value(_bondList, i).x, ds_list_find_value(_bondList, i).y);
+        draw_sprite_ext(spr_bond, 0, x, y, 1, 1, angle, c_white, 1);}
 }
+
+draw_text(x, y, string(_leaderId));
 </string>
           </argument>
         </arguments>

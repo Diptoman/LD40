@@ -53,7 +53,8 @@ _inPoint = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>_outPoint._in = "";
+            <string>if (instance_exists(_outPoint))
+    _outPoint._in = "";
 </string>
           </argument>
         </arguments>

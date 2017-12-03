@@ -130,7 +130,7 @@ for(i = 0; i &lt; ds_list_size(_bondList); i++)
     if (collEndPoint != _callingEndPoint)
     {   
         //If the required atom isn't in the list of bonded atoms for teh current one
-        if (coll &gt; 0)
+        if ((coll &gt; 0) &amp;&amp; (currentColl &gt; 0))
         {
             var ind = -1;
             ind = ds_list_find_index(currentColl._immediateBondList, coll.id);
@@ -154,12 +154,15 @@ for(i = 0; i &lt; ds_list_size(_bondList); i++)
 }
 
 //Check whether there are no extra bonds in the atom
-for(i = 0; i &lt; ds_list_size(currentColl._immediateBondList); i++)
+if (currentColl &gt; 0)
 {
-    var item = ds_list_find_value(currentColl._immediateBondList, i);
-    var endPointCheck = collision_point(item.x, item.y, obj_endPoint, 0, 0);
-    if (endPointCheck &lt; 0)
-        obj_control._winCondition = 1000;
+    for(i = 0; i &lt; ds_list_size(currentColl._immediateBondList); i++)
+    {
+        var item = ds_list_find_value(currentColl._immediateBondList, i);
+        var endPointCheck = collision_point(item.x, item.y, obj_endPoint, 0, 0);
+        if (endPointCheck &lt; 0)
+            obj_control._winCondition = 1000;
+    }
 }
 </string>
           </argument>
