@@ -25,8 +25,23 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Turn data
-_turnTimer = 30;
+            <string>///Grid data
+_gridColumns = 21;
+_gridRows = 12;
+_gridSize = 48;
+_gridOffsetX = 48;
+_gridOffsetY = 48;
+
+//Mouse
+_currentRow = -1;
+_currentColumn = -1;
+_isDraggingPath = false;
+
+//Path point
+_currentPathPoint = -1;
+
+//What is selected
+_selected = "path";
 </string>
           </argument>
         </arguments>
@@ -47,23 +62,8 @@ _turnTimer = 30;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Grid data
-_gridColumns = 16;
-_gridRows = 12;
-_gridSize = 48;
-_gridOffsetX = 48;
-_gridOffsetY = 96;
-
-//Mouse
-_currentRow = -1;
-_currentColumn = -1;
-_isDraggingPath = false;
-
-//Path point
-_currentPathPoint = -1;
-
-//What is selected
-_selected = "path";
+            <string>///Turn data
+_turnTimer = 30;
 </string>
           </argument>
         </arguments>
@@ -351,7 +351,8 @@ for(i = 0; i &lt; _gridColumns; i++ )
 {
     for(j = 0; j &lt; _gridRows; j++ )
     {
-        draw_rectangle(_gridOffsetX + i*_gridSize, _gridOffsetY + j*_gridSize, _gridOffsetX + (i + 1)*_gridSize, _gridOffsetY + (j + 1)*_gridSize, true);
+        draw_sprite(spr_GridBase, 0, _gridOffsetX + i*_gridSize, _gridOffsetY + j*_gridSize);
+        //draw_rectangle(_gridOffsetX + i*_gridSize, _gridOffsetY + j*_gridSize, _gridOffsetX + (i + 1)*_gridSize, _gridOffsetY + (j + 1)*_gridSize, true);
     }
 }
 </string>
