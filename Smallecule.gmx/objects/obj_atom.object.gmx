@@ -36,7 +36,7 @@ _parent = -1;
 _bondList = ds_list_create();
 _immediateBondList = ds_list_create();
 
-_ended = false;
+_active = true;
 
 TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 4, 0, 1.2);
 TweenFire(id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 4, obj_control._turnTimer / 4 + obj_control._turnTimer / 8, 1.2, 1);
@@ -63,7 +63,32 @@ TweenFire(id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 4, 
           <argument>
             <kind>1</kind>
             <string>if (obj_control._winCondition == 0)
-    show_message("WIN");
+{
+    if (obj_control.alarm[0] &lt; 0)
+    {
+        TweenDestroyAll(0);
+        
+        TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 8, 1, 1.2);
+        TweenFire(id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 8, obj_control._turnTimer / 4 + obj_control._turnTimer / 8, 1.2, 0);
+        
+        var i, atom;
+        for (i = 0; i &lt; ds_list_size(_bondList); i++)
+        {
+            atom = ds_list_find_value(_bondList, i);
+            TweenFire(atom.id, image_scale__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 8, 1, 1.2);
+            TweenFire(atom.id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 8, obj_control._turnTimer / 4 + obj_control._turnTimer / 8, 1.2, 0);
+        }
+        
+        //Deactivate all
+        //for(i = 0; i &lt; instance_number(obj_atom); i++ )
+        //{
+            //atom = instance_find(obj_atom, i);
+            //atom._active = false;
+        //}
+        
+        obj_control.alarm[0] = room_speed * 2;
+    }
+}
 else
     {
     obj_control._winCondition = 1000;}
@@ -123,7 +148,7 @@ _rotating = false;
             <string>///End
 var coll = collision_point(x, y, obj_endPoint, 0, false);
 
-if (coll &gt; 0)
+if ((coll &gt; 0) &amp;&amp; (_active == true))
 {
     if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == false))
     {
@@ -159,7 +184,7 @@ if (coll &gt; 0)
             <kind>1</kind>
             <string>///Bind
 
-if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == false))
+if ((((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == false)) &amp;&amp; (_active == true))
 {
     var coll = collision_point(x, y, obj_binder_parent, 0, false);
     
@@ -230,7 +255,7 @@ if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == fals
           <argument>
             <kind>1</kind>
             <string>///Rotate
-if ((_isMolecule == true) &amp;&amp; (_isLead == true))
+if (((_isMolecule == true) &amp;&amp; (_isLead == true)) &amp;&amp; (_active == true))
 {
     var coll = collision_point(x, y, obj_rotator, 0, false);
     
@@ -310,7 +335,7 @@ if ((_isMolecule == true) &amp;&amp; (_isLead == true))
             <kind>1</kind>
             <string>///Move
  
-if (_isLead == true)
+if ((_isLead == true) &amp;&amp; (_active == true))
 {
     switch(_direction)
     {
@@ -393,7 +418,8 @@ if (_isLead == true)
           <argument>
             <kind>1</kind>
             <string>///Repeat
-alarm[0] = obj_control._turnTimer;
+if (_active == true)
+    alarm[0] = obj_control._turnTimer;
 
 _rotating = false;
 </string>
