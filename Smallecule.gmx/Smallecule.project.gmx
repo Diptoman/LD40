@@ -103,6 +103,7 @@
     <sprite>sprites\spr_line</sprite>
     <sprite>sprites\spr_binder</sprite>
     <sprite>sprites\spr_bond</sprite>
+    <sprite>sprites\spr_rotator</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -166,9 +167,14 @@
     <objects name="Items">
       <object>objects\obj_atom</object>
       <object>objects\obj_item_parent</object>
-      <object>objects\obj_binder_v_down</object>
-      <object>objects\obj_binder_parent</object>
-      <object>objects\obj_bond</object>
+      <objects name="Binders">
+        <object>objects\obj_binder_parent</object>
+        <object>objects\obj_bond</object>
+        <object>objects\obj_binder_v_down</object>
+      </objects>
+      <objects name="Rotators">
+        <object>objects\obj_rotator</object>
+      </objects>
     </objects>
     <objects name="TweenGMS">
       <object>objects\obj_SharedTweener</object>

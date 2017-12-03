@@ -68,6 +68,8 @@ if (pathPoint &gt; 0)
 {
     _direction = pathPoint._out;
 }
+
+_rotating = false;
 </string>
           </argument>
         </arguments>
@@ -158,13 +160,92 @@ if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == fals
         <arguments>
           <argument>
             <kind>1</kind>
+            <string>///Rotate
+if ((_isMolecule == true) &amp;&amp; (_isLead == true))
+{
+    var coll = collision_point(x, y, obj_rotator, 0, false);
+    
+    if (coll &gt; 0)
+    {
+        angle = coll._rotationAngle;
+        
+        //Rotate each
+        var i;
+        for (i = 0; i &lt; ds_list_size(_bondList); i++)
+        {
+            var atom = ds_list_find_value(_bondList, i);
+            var rotAngle, dist;
+            rotAngle = -angle;
+            
+            _rotating = true;
+             
+            switch(_direction)
+            {
+                case "":
+                    rotAngle += point_direction(x, y, atom.x, atom.y);
+                    dist = point_distance(x, y, atom.x, atom.y);
+                    TweenFire(atom, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.x, x + lengthdir_x(dist, rotAngle));
+                    TweenFire(atom, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.y, y + lengthdir_y(dist, rotAngle));
+                    break;
+                    
+                case "right":
+                    rotAngle += point_direction(x + obj_control._gridSize, y, atom.x + obj_control._gridSize, atom.y);
+                    dist = point_distance(x + obj_control._gridSize, y, atom.x + obj_control._gridSize, atom.y);
+                    TweenFire(atom, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.x, x + obj_control._gridSize + lengthdir_x(dist, rotAngle));
+                    TweenFire(atom, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.y, y + lengthdir_y(dist, rotAngle));
+                    break;
+                    
+                case "left":
+                    rotAngle += point_direction(x - obj_control._gridSize, y, atom.x - obj_control._gridSize, atom.y);
+                    dist = point_distance(x - obj_control._gridSize, y, atom.x - obj_control._gridSize, atom.y);
+                    TweenFire(atom, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.x, x - obj_control._gridSize + lengthdir_x(dist, rotAngle));
+                    TweenFire(atom, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.y, y + lengthdir_y(dist, rotAngle));
+                    break;
+                    
+                case "up":
+                    rotAngle += point_direction(x, y - obj_control._gridSize, atom.x, atom.y - obj_control._gridSize);
+                    dist = point_distance(x, y - obj_control._gridSize, atom.x, atom.y - obj_control._gridSize);
+                    TweenFire(atom, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.x, x + lengthdir_x(dist, rotAngle));
+                    TweenFire(atom, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.y, y - obj_control._gridSize + lengthdir_y(dist, rotAngle));
+                    break;
+                    
+                case "down":
+                    rotAngle += point_direction(x, y + obj_control._gridSize, atom.x, atom.y + obj_control._gridSize);
+                    dist = point_distance(x, y + obj_control._gridSize, atom.x, atom.y + obj_control._gridSize);
+                    TweenFire(atom, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.x, x + lengthdir_x(dist, rotAngle));
+                    TweenFire(atom, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, atom.y, y + obj_control._gridSize + lengthdir_y(dist, rotAngle));
+                    break;
+            }
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
             <string>///Move
  
 if (_isLead == true)
 {
     switch(_direction)
     {
-        case "none":
+        case "":
            break;
         
         case "right":
@@ -189,12 +270,14 @@ if (_isLead == true)
     }
     
     var i;
+    if (_rotating == false)
+    {
     for(i = 0; i &lt; ds_list_size(_bondList); i++)
     {
         var subAtom = ds_list_find_value(_bondList, i);        
         switch(_direction)
         {
-            case "none":
+            case "":
                 break;
         
             case "right":
@@ -217,6 +300,7 @@ if (_isLead == true)
                 //y += obj_control._gridSize;
                 break;
         }
+    }
     }
 }
 </string>
@@ -241,6 +325,8 @@ if (_isLead == true)
             <kind>1</kind>
             <string>///Repeat
 alarm[0] = obj_control._turnTimer;
+
+_rotating = false;
 </string>
           </argument>
         </arguments>
