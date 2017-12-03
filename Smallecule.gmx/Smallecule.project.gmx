@@ -104,6 +104,7 @@
     <sprite>sprites\spr_line</sprite>
     <sprite>sprites\spr_binder</sprite>
     <sprite>sprites\spr_bond</sprite>
+    <sprite>sprites\spr_bond_original</sprite>
     <sprite>sprites\spr_rotator</sprite>
     <sprite>sprites\UI_Bottom</sprite>
     <sprite>sprites\UI_Side</sprite>
@@ -173,6 +174,8 @@
       <object>objects\obj_pathPoint</object>
       <object>objects\obj_pathDrawer</object>
       <object>objects\obj_endPoint</object>
+      <object>objects\obj_gridDrawer</object>
+      <object>objects\obj_bondDrawer</object>
     </objects>
     <objects name="Items">
       <object>objects\obj_atom</object>

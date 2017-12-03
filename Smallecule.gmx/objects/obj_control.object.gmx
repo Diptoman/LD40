@@ -42,6 +42,8 @@ _currentPathPoint = -1;
 
 //What is selected
 _selected = "path";
+
+instance_create(x, y, obj_gridDrawer);
 </string>
           </argument>
         </arguments>
@@ -64,6 +66,8 @@ _selected = "path";
             <kind>1</kind>
             <string>///Turn data
 _turnTimer = 30;
+
+_winCondition = 1000;
 </string>
           </argument>
         </arguments>
@@ -328,37 +332,6 @@ coll = -1;
       </action>
     </event>
     <event eventtype="8" enumb="0">
-      <action>
-        <libid>1</libid>
-        <id>603</id>
-        <kind>7</kind>
-        <userelative>0</userelative>
-        <isquestion>0</isquestion>
-        <useapplyto>-1</useapplyto>
-        <exetype>2</exetype>
-        <functionname></functionname>
-        <codestring></codestring>
-        <whoName>self</whoName>
-        <relative>0</relative>
-        <isnot>0</isnot>
-        <arguments>
-          <argument>
-            <kind>1</kind>
-            <string>///Draw grid
-draw_set_color(c_white);
-var i, j;
-for(i = 0; i &lt; _gridColumns; i++ )
-{
-    for(j = 0; j &lt; _gridRows; j++ )
-    {
-        draw_sprite(spr_GridBase, 0, _gridOffsetX + i*_gridSize, _gridOffsetY + j*_gridSize);
-        //draw_rectangle(_gridOffsetX + i*_gridSize, _gridOffsetY + j*_gridSize, _gridOffsetX + (i + 1)*_gridSize, _gridOffsetY + (j + 1)*_gridSize, true);
-    }
-}
-</string>
-          </argument>
-        </arguments>
-      </action>
       <action>
         <libid>1</libid>
         <id>603</id>

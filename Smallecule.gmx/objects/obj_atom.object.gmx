@@ -45,6 +45,33 @@ TweenFire(id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 4, 
         </arguments>
       </action>
     </event>
+    <event eventtype="2" enumb="1">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>if (obj_control._winCondition == 0)
+    show_message("WIN");
+else
+    {
+    obj_control._winCondition = 1000;}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="2" enumb="0">
       <action>
         <libid>1</libid>
@@ -96,10 +123,19 @@ _rotating = false;
             <string>///End
 var coll = collision_point(x, y, obj_endPoint, 0, false);
 
-if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == false))
+if (coll &gt; 0)
 {
-    _ended = true;
-    var i;
+    if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == false))
+    {
+        
+        obj_control._winCondition = instance_number(obj_endPoint) - 1;
+          
+        coll._callingEndPoint = -1;
+        with (coll) 
+            event_perform(ev_other, ev_user0);
+ 
+        alarm[1] = 1;
+    }
 }
 </string>
           </argument>
