@@ -39,6 +39,9 @@ _isDraggingPath = false;
 
 //Path point
 _currentPathPoint = -1;
+
+//What is selected
+_selected = "path";
 </string>
           </argument>
         </arguments>
@@ -84,6 +87,8 @@ _turnTimer = 30;
           <argument>
             <kind>1</kind>
             <string>///Place 2nd path point
+if (_selected == "path")
+{
 if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
 {
     current2ndPathPoint = collision_rectangle(_gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + _currentRow*_gridSize, _gridOffsetX + (_currentColumn + 1)*_gridSize, _gridOffsetY + (_currentRow + 1)*_gridSize, obj_pathPoint, false, false)
@@ -175,6 +180,7 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
 }
 
 _currentPathPoint = -1;
+}
 </string>
           </argument>
         </arguments>
@@ -198,6 +204,8 @@ _currentPathPoint = -1;
           <argument>
             <kind>1</kind>
             <string>///Place path point
+if (_selected == "path")
+{
 if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
 {
     _currentPathPoint = collision_rectangle(_gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + _currentRow*_gridSize, _gridOffsetX + (_currentColumn + 1)*_gridSize, _gridOffsetY + (_currentRow + 1)*_gridSize, obj_pathPoint, false, false)
@@ -214,6 +222,40 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
             _currentPathPoint = -1;
     }
 }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Place binder
+if (_selected == "binderV")
+{
+    coll = collision_rectangle(_gridOffsetX + (_currentColumn + .25)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow - .75) * _gridSize, obj_item_parent, 0, false);
+    
+    if (coll &lt;= 0)
+    {
+        var binder = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + _currentRow*_gridSize, obj_binder_v_down);
+        binder._type = "v_down";
+    }
+}
+
+coll = -1;
 </string>
           </argument>
         </arguments>
@@ -320,6 +362,8 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
           <argument>
             <kind>1</kind>
             <string>///Draw path line
+if (_selected == "path")
+{
 if (_currentPathPoint &gt; 0)
 {
     if ((_currentColumn == _currentPathPoint._column) || (_currentRow == _currentPathPoint._row)) //If it's a valid path
@@ -332,6 +376,81 @@ if (_currentPathPoint &gt; 0)
     }
     draw_line(_currentPathPoint.x, _currentPathPoint.y, mouse_x, mouse_y);
 }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Draw binder
+if (_selected == "binderV")
+{
+    if (_currentRow &gt;= 1)
+    {
+        draw_sprite_ext(spr_binder, 0, _gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + _currentRow*_gridSize, 1, 1, 0, c_white, .5);
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="50">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>_selected = "binderV";
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="49">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>_selected = "path";
 </string>
           </argument>
         </arguments>

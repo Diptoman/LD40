@@ -3,7 +3,7 @@
   <spriteName>spr_atom</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>0</depth>
+  <depth>-100</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -26,8 +26,14 @@
           <argument>
             <kind>1</kind>
             <string>alarm[0] = obj_control._turnTimer;
+image_speed = 0;
 
 _direction = "none";
+
+_isMolecule = false;
+_isLead = true;
+_parent = -1;
+_bondList = ds_list_create();
 
 TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 4, 0, 1.2);
 TweenFire(id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 4, obj_control._turnTimer / 4 + obj_control._turnTimer / 8, 1.2, 1);
@@ -82,31 +88,117 @@ if (pathPoint &gt; 0)
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>///Move
-switch(_direction)
+            <string>///Bind
+
+if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == false))
 {
-    case "none":
-        break;
+    var coll = collision_point(x, y, obj_binder_parent, 0, false);
+    
+    if (coll &gt; 1)
+    {
+        var type = coll._type;
         
-    case "right":
-        TweenFire(id, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, x, x + obj_control._gridSize);
-        //x += obj_control._gridSize;
-        break;
+        switch (type)
+        {
+            case "v_down":
+                if (coll.y &lt; y)
+                {
+                    var collMol = collision_point(x, y - obj_control._gridSize, obj_atom, 0, true);
+                    if (collMol &gt; 0)
+                    {
+                        _isMolecule = true;
+                        _isLead = true;
+                        ds_list_add(_bondList, collMol);
+                        collMol._isMolecule = true;
+                        collMol._isLead = false;
+                        collMol._parent = id;
+                        collMol.depth = depth + 1;
+                        ds_list_add(collMol._bondList, id);
+                    }
+                }
+        }
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Move
+ 
+if (_isLead == true)
+{
+    switch(_direction)
+    {
+        case "none":
+           break;
         
-    case "left":
-        TweenFire(id, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, x, x - obj_control._gridSize);
-        //x -= obj_control._gridSize;
-        break;
+        case "right":
+            TweenFire(id, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, x, x + obj_control._gridSize);
+            //x += obj_control._gridSize;
+            break;
         
-    case "up":
-        TweenFire(id, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, y, y - obj_control._gridSize);
-        //y -= obj_control._gridSize;
-        break;
+        case "left":
+            TweenFire(id, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, x, x - obj_control._gridSize);
+            //x -= obj_control._gridSize;
+            break;
         
-    case "down":
-        TweenFire(id, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, y, y + obj_control._gridSize);
-        //y += obj_control._gridSize;
-        break;
+        case "up":
+            TweenFire(id, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, y, y - obj_control._gridSize);
+            //y -= obj_control._gridSize;
+            break;
+        
+        case "down":
+            TweenFire(id, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, y, y + obj_control._gridSize);
+            //y += obj_control._gridSize;
+            break;
+    }
+    
+    var i;
+    for(i = 0; i &lt; ds_list_size(_bondList); i++)
+    {
+        var subAtom = ds_list_find_value(_bondList, i);        
+        switch(_direction)
+        {
+            case "none":
+                break;
+        
+            case "right":
+                TweenFire(subAtom.id, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, subAtom.x, subAtom.x + obj_control._gridSize);
+                //x += obj_control._gridSize;
+                break;
+        
+            case "left":
+                TweenFire(subAtom.id, x__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, subAtom.x, subAtom.x - obj_control._gridSize);
+                //x -= obj_control._gridSize;
+                break;
+        
+            case "up":
+                TweenFire(subAtom.id, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, subAtom.y, subAtom.y - obj_control._gridSize);
+                //y -= obj_control._gridSize;
+                break;
+        
+            case "down":
+                TweenFire(subAtom.id, y__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 2, subAtom.y, subAtom.y + obj_control._gridSize);
+                //y += obj_control._gridSize;
+                break;
+        }
+    }
 }
 </string>
           </argument>
@@ -130,6 +222,45 @@ switch(_direction)
             <kind>1</kind>
             <string>///Repeat
 alarm[0] = obj_control._turnTimer;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="8" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>draw_self();
+
+if ((_isMolecule == false) || (_isLead == true) &amp;&amp; (_isMolecule == true))
+{
+    image_index = 0;
+}
+else
+{
+    image_index = 1;
+}
+
+var i;
+for(i = 0; i &lt; ds_list_size(_bondList); i++)
+{
+    angle = point_direction(x, y, ds_list_find_value(_bondList, i).x, ds_list_find_value(_bondList, i).y);
+    draw_sprite_ext(spr_bond, 0, x, y, 1, 1, angle, c_white, 1);
+}
 </string>
           </argument>
         </arguments>

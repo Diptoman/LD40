@@ -101,6 +101,8 @@
     <sprite>sprites\spr_spawner</sprite>
     <sprite>sprites\spr_pathPoint</sprite>
     <sprite>sprites\spr_line</sprite>
+    <sprite>sprites\spr_binder</sprite>
+    <sprite>sprites\spr_bond</sprite>
   </sprites>
   <backgrounds name="background"/>
   <paths name="paths"/>
@@ -163,6 +165,10 @@
     </objects>
     <objects name="Items">
       <object>objects\obj_atom</object>
+      <object>objects\obj_item_parent</object>
+      <object>objects\obj_binder_v_down</object>
+      <object>objects\obj_binder_parent</object>
+      <object>objects\obj_bond</object>
     </objects>
     <objects name="TweenGMS">
       <object>objects\obj_SharedTweener</object>
