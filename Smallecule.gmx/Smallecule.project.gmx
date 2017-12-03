@@ -102,6 +102,8 @@
     <sprite>sprites\spr_spawner</sprite>
     <sprite>sprites\spr_pathPoint</sprite>
     <sprite>sprites\spr_line</sprite>
+    <sprite>sprites\spr_lineStart</sprite>
+    <sprite>sprites\spr_lineEnd</sprite>
     <sprite>sprites\spr_binder</sprite>
     <sprite>sprites\spr_bond</sprite>
     <sprite>sprites\spr_rotator</sprite>
