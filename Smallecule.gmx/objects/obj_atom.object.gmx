@@ -34,6 +34,7 @@ _isMolecule = false;
 _isLead = true;
 _parent = -1;
 _bondList = ds_list_create();
+_immediateBondList = ds_list_create();
 
 TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, obj_control._turnTimer / 4, 0, 1.2);
 TweenFire(id, image_scale__, EaseOutQuad, 0, false, obj_control._turnTimer / 4, obj_control._turnTimer / 4 + obj_control._turnTimer / 8, 1.2, 1);
@@ -111,6 +112,7 @@ if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == fals
                         _isMolecule = true;
                         _isLead = true;
                         ds_list_add(_bondList, collMol);
+                        ds_list_add(_immediateBondList, collMol);
                         
                         if (ds_list_size(collMol._bondList) &gt; 0)
                         {
@@ -126,6 +128,7 @@ if (((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == fals
                         collMol._parent = id;
                         collMol.depth = depth + 1;
                         ds_list_add(collMol._bondList, id);
+                        ds_list_add(collMol._immediateBondList, id);
                         
                         if (ds_list_size(_bondList) &gt; 0)
                         {
@@ -361,7 +364,7 @@ else
 }
 
 var i;
-for(i = 0; i &lt; ds_list_size(_bondList); i++)
+for(i = 0; i &lt; ds_list_size(_immediateBondList); i++)
 {
     angle = point_direction(x, y, ds_list_find_value(_bondList, i).x, ds_list_find_value(_bondList, i).y);
     draw_sprite_ext(spr_bond, 0, x, y, 1, 1, angle, c_white, 1);
