@@ -98,6 +98,7 @@
   <sounds name="sound"/>
   <sprites name="sprites">
     <sprite>sprites\spr_atom</sprite>
+    <sprite>sprites\spr_endPoint</sprite>
     <sprite>sprites\spr_spawner</sprite>
     <sprite>sprites\spr_pathPoint</sprite>
     <sprite>sprites\spr_line</sprite>
@@ -170,6 +171,7 @@
       <object>objects\obj_spawner</object>
       <object>objects\obj_pathPoint</object>
       <object>objects\obj_pathDrawer</object>
+      <object>objects\obj_endPoint</object>
     </objects>
     <objects name="Items">
       <object>objects\obj_atom</object>
