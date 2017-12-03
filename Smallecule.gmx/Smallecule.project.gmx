@@ -102,8 +102,6 @@
     <sprite>sprites\spr_spawner</sprite>
     <sprite>sprites\spr_pathPoint</sprite>
     <sprite>sprites\spr_line</sprite>
-    <sprite>sprites\spr_lineStart</sprite>
-    <sprite>sprites\spr_lineEnd</sprite>
     <sprite>sprites\spr_binder</sprite>
     <sprite>sprites\spr_bond</sprite>
     <sprite>sprites\spr_rotator</sprite>
@@ -111,6 +109,7 @@
     <sprite>sprites\UI_Side</sprite>
     <sprite>sprites\spr_GridBase</sprite>
     <sprite>sprites\Spr_UI_Button</sprite>
+    <sprite>sprites\spr_waiter</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
