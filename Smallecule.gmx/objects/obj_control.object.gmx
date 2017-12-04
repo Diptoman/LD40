@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>///Grid data
 _gridColumns = 21;
-_gridRows = 12;
+_gridRows = 11;
 _gridSize = 48;
 _gridOffsetX = 48;
 _gridOffsetY = 48;
@@ -44,6 +44,7 @@ _currentPathPoint = -1;
 _selected = "path";
 
 instance_create(x, y, obj_gridDrawer);
+instance_create(x, y, obj_UI);
 </string>
           </argument>
         </arguments>
@@ -65,9 +66,12 @@ instance_create(x, y, obj_gridDrawer);
           <argument>
             <kind>1</kind>
             <string>///Turn data
-_turnTimer = 30;
+_turnTimer = 60;
 
 _winCondition = 1000;
+
+_isPlaying = false;
+_level = 999;
 </string>
           </argument>
         </arguments>
@@ -405,7 +409,7 @@ collPrim = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _grid
 
 if (collPrim &lt; 0)
 {
-if (_selected == "binderV_down")
+if (_selected == "binderV_down") &amp;&amp; (_currentRow &gt;= 1) &amp;&amp; (_currentColumn &gt;= 0)
 {
     coll = collision_rectangle(_gridOffsetX + (_currentColumn + .25)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow - .75) * _gridSize, obj_item_parent, 0, false);
     
@@ -415,7 +419,7 @@ if (_selected == "binderV_down")
     }
 }
 
-if (_selected == "binderV_up")
+if (_selected == "binderV_up") &amp;&amp; (_currentRow &gt;= 1) &amp;&amp; (_currentColumn &gt;= 0)
 {
     coll = collision_rectangle(_gridOffsetX + (_currentColumn + .25)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow - .75) * _gridSize, obj_item_parent, 0, false);
     
@@ -425,7 +429,7 @@ if (_selected == "binderV_up")
     }
 }
 
-if (_selected == "binderH_left")
+if (_selected == "binderH_left") &amp;&amp; (_currentColumn &gt;= 1) &amp;&amp; (_currentRow &gt;= 0)
 {
     coll = collision_rectangle(_gridOffsetX + (_currentColumn - .75)  * _gridSize, _gridOffsetY + (_currentRow + .25) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, obj_item_parent, 0, false);
     
@@ -435,7 +439,7 @@ if (_selected == "binderH_left")
     }
 }
 
-if (_selected == "binderH_right")
+if (_selected == "binderH_right") &amp;&amp; (_currentColumn &gt;= 1) &amp;&amp; (_currentRow &gt;= 0)
 {
     coll = collision_rectangle(_gridOffsetX + (_currentColumn - .75)  * _gridSize, _gridOffsetY + (_currentRow + .25) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, obj_item_parent, 0, false);
     
@@ -470,7 +474,7 @@ coll = -1;
             <string>///Place rotator
 collPrim = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_item_parent, false, false);
 
-if (collPrim &lt; 0)
+if (collPrim &lt; 0) &amp;&amp; (_currentColumn &gt;= 0) &amp;&amp; (_currentRow &gt;= 0)
 {
 if (_selected == "rotator_plus90")
 {

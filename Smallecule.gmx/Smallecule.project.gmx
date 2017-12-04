@@ -113,6 +113,7 @@
     <sprite>sprites\spr_GridBase</sprite>
     <sprite>sprites\Spr_UI_Button</sprite>
     <sprite>sprites\spr_waiter</sprite>
+    <sprite>sprites\spr_playControls</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -178,6 +179,7 @@
       <object>objects\obj_endPoint</object>
       <object>objects\obj_gridDrawer</object>
       <object>objects\obj_bondDrawer</object>
+      <object>objects\obj_UI</object>
     </objects>
     <objects name="Items">
       <object>objects\obj_atom</object>
@@ -196,6 +198,17 @@
     </objects>
     <objects name="TweenGMS">
       <object>objects\obj_SharedTweener</object>
+    </objects>
+    <objects name="UI Buttons">
+      <object>objects\obj_UI_parent</object>
+      <object>objects\obj_select_path</object>
+      <object>objects\obj_select_binder_v_down</object>
+      <object>objects\obj_select_binder_v_up</object>
+      <object>objects\obj_select_binder_h_left</object>
+      <object>objects\obj_select_binder_h_right</object>
+      <object>objects\obj_select_rotator_right</object>
+      <object>objects\obj_select_rotator_left</object>
+      <object>objects\obj_play</object>
     </objects>
   </objects>
   <rooms name="rooms">
