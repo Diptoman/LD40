@@ -184,7 +184,7 @@ draw_set_font(fnt_1);
 draw_set_halign(fa_center);
 draw_set_valign(fa_center);
 if (alarm[2] &gt; 0)
-    draw_text(x, y, string(ceil(alarm[2] / obj_control._turnTimer)));
+    draw_text(x, y, string(_currentGap + 1));
 else
     draw_text(x, y, string(_spawnGap));
 </string>
