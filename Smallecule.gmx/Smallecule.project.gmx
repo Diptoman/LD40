@@ -219,10 +219,13 @@
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_lvl4</room>
     <room>rooms\rm_lvl1</room>
     <room>rooms\rm_lvl2</room>
     <room>rooms\rm_lvl3</room>
+    <room>rooms\rm_lvl4</room>
+    <room>rooms\rm_lvl5</room>
+    <room>rooms\rm_lvl6</room>
+    <room>rooms\rm_lvl7</room>
     <room>rooms\rm_template</room>
     <room>rooms\rm_new</room>
     <room>rooms\room3</room>
