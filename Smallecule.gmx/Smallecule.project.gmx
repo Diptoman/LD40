@@ -115,6 +115,7 @@
     <sprite>sprites\spr_waiter</sprite>
     <sprite>sprites\spr_playControls</sprite>
     <sprite>sprites\spr_re</sprite>
+    <sprite>sprites\spr_lvlSel</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -212,11 +213,15 @@
       <object>objects\obj_play</object>
       <object>objects\obj_reset</object>
       <object>objects\obj_restart</object>
+      <object>objects\obj_nxtLvl</object>
+      <object>objects\obj_lvlSel</object>
     </objects>
   </objects>
   <rooms name="rooms">
-    <room>rooms\rm_lvl2</room>
+    <room>rooms\rm_lvl4</room>
     <room>rooms\rm_lvl1</room>
+    <room>rooms\rm_lvl2</room>
+    <room>rooms\rm_lvl3</room>
     <room>rooms\rm_template</room>
     <room>rooms\rm_new</room>
     <room>rooms\room3</room>

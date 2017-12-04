@@ -339,6 +339,7 @@ if ((((_isMolecule == true) &amp;&amp; (_isLead == true)) || (_isMolecule == fal
                         
                         collMol._isMolecule = true;
                         collMol._isLead = false;
+                        TweenDestroyTarget(collMol, false);
                         collMol._parent = id;
                         collMol.depth = depth + 1;
                         ds_list_add(collMol._bondList, id);
