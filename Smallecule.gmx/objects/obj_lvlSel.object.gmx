@@ -27,7 +27,7 @@
             <kind>1</kind>
             <string>event_inherited();
 
-room_goto_next();
+room_goto(rm_menu);
 </string>
           </argument>
         </arguments>
@@ -54,7 +54,7 @@ room_goto_next();
 draw_self();
 draw_sprite_ext(spr_lvlSel, 1, x, y, image_xscale, image_yscale, 0, c_white, 1);
 
-_text = "Clear the board.##All paths/placements will be deleted."
+_text = "Go to level select."
 </string>
           </argument>
         </arguments>

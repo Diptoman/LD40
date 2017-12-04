@@ -113,6 +113,7 @@
     <sprite>sprites\UI_Side</sprite>
     <sprite>sprites\spr_GridBase</sprite>
     <sprite>sprites\Spr_UI_Button</sprite>
+    <sprite>sprites\Spr_UI_Unlocked</sprite>
     <sprite>sprites\spr_waiter</sprite>
     <sprite>sprites\spr_playControls</sprite>
     <sprite>sprites\spr_re</sprite>

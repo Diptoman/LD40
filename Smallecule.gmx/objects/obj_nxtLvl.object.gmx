@@ -54,7 +54,7 @@ room_goto_next();
 draw_self();
 draw_sprite_ext(spr_lvlSel, 0, x, y, image_xscale, image_yscale, 0, c_white, 1);
 
-_text = "Clear the board.##All paths/placements will be deleted."
+_text = "Go to next level."
 </string>
           </argument>
         </arguments>

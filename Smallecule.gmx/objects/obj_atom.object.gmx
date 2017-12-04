@@ -180,7 +180,13 @@ if (instance_exists((_deathColl._leaderId)))
             atom._currentGap += 1;
         }
         
-        global.roomText = "LEVEL CLEARED!";
+        global.roomText = "#LEVEL CLEARED!###Click on Go To Next Level or Level Select on the top right of the menu to continue.";
+        
+        //Save data
+        ds_list_replace(global.data, obj_control._level - 1, 1);
+        tempfile=file_text_open_write("GameData.bb");
+        file_text_write_string(tempfile,ds_list_write(global.data));
+        file_text_close(tempfile);
     }
 }
 else
