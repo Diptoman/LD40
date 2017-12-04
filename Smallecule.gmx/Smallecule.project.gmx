@@ -115,6 +115,7 @@
     <sprite>sprites\spr_waiter</sprite>
     <sprite>sprites\spr_playControls</sprite>
     <sprite>sprites\spr_re</sprite>
+    <sprite>sprites\spr_atomDestroy</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
