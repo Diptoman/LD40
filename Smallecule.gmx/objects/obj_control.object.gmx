@@ -96,6 +96,102 @@ _winCondition = 1000;
         </arguments>
       </action>
     </event>
+    <event eventtype="6" enumb="61">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>switch(_selected)
+{
+    case "binderV_down":
+        _selected = "binderH_right";
+        break;
+        
+    case "binderV_up":
+        _selected = "binderV_down";
+        break;  
+        
+    case "binderH_left":
+        _selected = "binderV_up";
+        break;
+        
+    case "binderH_right":
+        _selected = "binderH_left";
+        break;
+        
+    case "rotator_plus90":
+        _selected = "rotator_minus90";
+        break;
+        
+    case "rotator_minus90":
+        _selected = "rotator_plus90";
+        break;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="60">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>switch(_selected)
+{
+    case "binderH_right":
+        _selected = "binderV_down";
+        break;
+        
+    case "binderV_down":
+        _selected = "binderV_up";
+        break;  
+        
+    case "binderV_up":
+        _selected = "binderH_left";
+        break;
+        
+    case "binderH_left":
+        _selected = "binderH_right";
+        break;
+        
+    case "rotator_plus90":
+        _selected = "rotator_minus90";
+        break;
+        
+    case "rotator_minus90":
+        _selected = "rotator_plus90";
+        break;
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="56">
       <action>
         <libid>1</libid>
@@ -304,14 +400,43 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
           <argument>
             <kind>1</kind>
             <string>///Place binder
-if (_selected == "binderV")
+if (_selected == "binderV_down")
 {
     coll = collision_rectangle(_gridOffsetX + (_currentColumn + .25)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow - .75) * _gridSize, obj_item_parent, 0, false);
     
     if (coll &lt;= 0)
     {
         var binder = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + _currentRow*_gridSize, obj_binder_v_down);
-        binder._type = "v_down";
+    }
+}
+
+if (_selected == "binderV_up")
+{
+    coll = collision_rectangle(_gridOffsetX + (_currentColumn + .25)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow - .75) * _gridSize, obj_item_parent, 0, false);
+    
+    if (coll &lt;= 0)
+    {
+        var binder = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + _currentRow*_gridSize, obj_binder_v_up);
+    }
+}
+
+if (_selected == "binderH_left")
+{
+    coll = collision_rectangle(_gridOffsetX + (_currentColumn - .75)  * _gridSize, _gridOffsetY + (_currentRow + .25) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, obj_item_parent, 0, false);
+    
+    if (coll &lt;= 0)
+    {
+        var binder = instance_create(_gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_binder_h_left);
+    }
+}
+
+if (_selected == "binderH_right")
+{
+    coll = collision_rectangle(_gridOffsetX + (_currentColumn - .75)  * _gridSize, _gridOffsetY + (_currentRow + .25) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, obj_item_parent, 0, false);
+    
+    if (coll &lt;= 0)
+    {
+        var binder = instance_create(_gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_binder_h_right);
     }
 }
 
@@ -345,6 +470,17 @@ if (_selected == "rotator_plus90")
     {
         var rotator = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_rotator);
         rotator._rotationAngle = 90;
+    }
+}
+
+if (_selected == "rotator_minus90")
+{
+    coll = collision_point(_gridOffsetX + (_currentColumn + .5)  * _gridSize, _gridOffsetY + (_currentRow + .5) * _gridSize, obj_item_parent, 0, false);
+    
+    if (coll &lt;= 0)
+    {
+        var rotator = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_rotator);
+        rotator._rotationAngle = -90;
     }
 }
 
@@ -461,11 +597,35 @@ if (_currentPathPoint &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Draw binder
-if (_selected == "binderV")
+if (_selected == "binderV_down")
 {
-    if (_currentRow &gt;= 1)
+    if (_currentRow &gt;= 1) &amp;&amp; (_currentColumn &gt;= 0)
     {
-        draw_sprite_ext(spr_binder, 0, _gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + _currentRow*_gridSize, 1, 1, 0, c_white, .5);
+        draw_sprite_ext(spr_binder, 0, _gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + _currentRow*_gridSize, 1, 1, 0, c_white, .75);
+    }
+}
+
+if (_selected == "binderV_up") 
+{
+    if (_currentRow &gt;= 1) &amp;&amp; (_currentColumn &gt;= 0)
+    {
+        draw_sprite_ext(spr_binder, 0, _gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + _currentRow*_gridSize, 1, -1, 0, c_white, .75);
+    }
+}
+
+if (_selected == "binderH_left")
+{
+    if (_currentColumn &gt;= 1) &amp;&amp; (_currentRow &gt;= 0)
+    {
+        draw_sprite_ext(spr_binderH, 0, _gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, 1, 1, 0, c_white, .75);
+    }
+}
+
+if (_selected == "binderH_right")
+{
+    if (_currentColumn &gt;= 1) &amp;&amp; (_currentRow &gt;= 0)
+    {
+        draw_sprite_ext(spr_binderH, 0, _gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, -1, 1, 0, c_white, .75);
     }
 }
 </string>
@@ -493,7 +653,15 @@ if (_selected == "rotator_plus90")
 {
     if ((_currentRow &gt;= 0) &amp;&amp; (_currentColumn &gt;= 0))
     {
-        draw_sprite_ext(spr_rotator, 0, _gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, 1, 1, 0, c_white, .5);
+        draw_sprite_ext(spr_rotator, 0, _gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, 1, 1, 0, c_white, .75);
+    }
+}
+
+if (_selected == "rotator_minus90")
+{
+    if ((_currentRow &gt;= 0) &amp;&amp; (_currentColumn &gt;= 0))
+    {
+        draw_sprite_ext(spr_rotator, 0, _gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, -1, 1, 0, c_white, .75);
     }
 }
 </string>
@@ -518,7 +686,7 @@ if (_selected == "rotator_plus90")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>_selected = "rotator_plus90";
+            <string>_selected = "rotator_minus90";
 </string>
           </argument>
         </arguments>
@@ -541,7 +709,7 @@ if (_selected == "rotator_plus90")
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>_selected = "binderV";
+            <string>_selected = "binderH_right";
 </string>
           </argument>
         </arguments>

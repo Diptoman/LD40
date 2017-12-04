@@ -103,6 +103,7 @@
     <sprite>sprites\spr_pathPoint</sprite>
     <sprite>sprites\spr_line</sprite>
     <sprite>sprites\spr_binder</sprite>
+    <sprite>sprites\spr_binderH</sprite>
     <sprite>sprites\spr_bond</sprite>
     <sprite>sprites\spr_bond_original</sprite>
     <sprite>sprites\spr_rotator</sprite>
@@ -184,6 +185,9 @@
         <object>objects\obj_binder_parent</object>
         <object>objects\obj_bond</object>
         <object>objects\obj_binder_v_down</object>
+        <object>objects\obj_binder_v_up</object>
+        <object>objects\obj_binder_h_left</object>
+        <object>objects\obj_binder_h_right</object>
       </objects>
       <objects name="Rotators">
         <object>objects\obj_rotator</object>
