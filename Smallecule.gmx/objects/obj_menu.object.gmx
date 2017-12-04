@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10000</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -25,53 +25,15 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>_yOffset = 192;
-_yOffset2 = 48;
-_xOffset = room_width - 216;
-
-
-a = instance_create(_xOffset, _yOffset, obj_select_path);
-a._minLevel = 1;
-
-a = instance_create(_xOffset, _yOffset + 72, obj_select_binder_v_down);
-a._minLevel = 3;
-a = instance_create(_xOffset + 56, _yOffset + 72, obj_select_binder_v_up);
-a._minLevel = 3;
-a = instance_create(_xOffset + 56*2, _yOffset + 72, obj_select_binder_h_left);
-a._minLevel = 4;
-a = instance_create(_xOffset + 56*3, _yOffset + 72, obj_select_binder_h_right);
-a._minLevel = 4;
-
-a = instance_create(_xOffset, _yOffset + 72*2, obj_select_rotator_right);
-a._minLevel = 7;
-a = instance_create(_xOffset + 56, _yOffset + 72*2, obj_select_rotator_left);
-a._minLevel = 7;
-
-a = instance_create(_xOffset, _yOffset2, obj_play);
-a._minLevel = 1;
-a._index = 0;
-a._playSpeed = 1;
-a = instance_create(_xOffset + 56, _yOffset2, obj_play);
-a._minLevel = 1;
-a._index = 1;
-a._playSpeed = 2;
-a = instance_create(_xOffset + 56*2, _yOffset2, obj_play);
-a._minLevel = 1;
-a._index = 2;
-a._playSpeed = 4;
-a = instance_create(_xOffset + 56*3, _yOffset2, obj_play);
-a._minLevel = 1;
-a._index = 3;
-a._playSpeed = .5;
-
-a = instance_create(_xOffset, _yOffset2 + 72, obj_reset);
-a._minLevel = 1;
-a = instance_create(_xOffset + 56, _yOffset2 + 72, obj_restart);
-a._minLevel = 1;
-a = instance_create(_xOffset + 56*2, _yOffset2 + 72, obj_nxtLvl);
-a._minLevel = 1;
-a = instance_create(_xOffset + 56*3, _yOffset2 + 72, obj_lvlSel);
-a._minLevel = 1;
+            <string>var i, j, xOffset = room_width / 2 - 64, yOffset = 300;
+for (i = 0; i &lt; 5; i++)
+{
+    for (j = 0; j &lt; 2; j++)
+    {
+        a = instance_create(xOffset + j*64, yOffset + i*64, obj_level);
+        a._levelNum = i*2 + j + 1;
+    }
+}
 </string>
           </argument>
         </arguments>
@@ -94,15 +56,16 @@ a._minLevel = 1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>draw_sprite(UI_Bottom, 0, 0, room_height - 144);
-draw_sprite(UI_Side, 0, room_width - 262, 0);
-
-draw_set_halign(fa_left);
-draw_set_valign(fa_top);
+            <string>draw_set_halign(fa_center);
+draw_set_valign(fa_center);
 draw_set_color(c_white);
+draw_set_font(fnt_2);
+
+draw_text_outline(room_width/2, room_height/2 - 280, "Bonding Bad", 1, c_gray, 8);
+
 draw_set_font(fnt_1);
 
-draw_text_ext(20, room_height - 136, global.roomText, -1, 1064);
+draw_text(room_width/2, 700, "Created for Ludum Dare 40 in 72 hours by#Diptoman Mukherjee (Programming &amp; design)#Pranjal Bisht (Art)#Joel Montpetit (Audio)");
 </string>
           </argument>
         </arguments>

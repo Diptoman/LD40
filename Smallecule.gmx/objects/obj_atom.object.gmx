@@ -70,8 +70,11 @@ var _moveTween;
 for (i = 0; i &lt; ds_list_size(_bondList); i++)
 {
     atom = ds_list_find_value(_bondList, i);
-    with (atom) instance_destroy();
+    if (instance_exists(atom))
+        with (atom) instance_destroy();
 }
+
+instance_create(x, y, obj_atomDest);
 </string>
           </argument>
         </arguments>

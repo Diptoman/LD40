@@ -94,6 +94,7 @@
   </datafiles>
   <NewExtensions>
     <extension index="0">extensions\TweenGMS</extension>
+    <extension index="1">extensions\Draw Text Outlined</extension>
   </NewExtensions>
   <sounds name="sound"/>
   <sprites name="sprites">
@@ -169,9 +170,11 @@
         <script>scripts\TweenDefine.gml</script>
       </scripts>
     </scripts>
+    <script>scripts\draw_text_outline.gml</script>
   </scripts>
   <fonts name="fonts">
     <font>fonts\fnt_1</font>
+    <font>fonts\fnt_2</font>
   </fonts>
   <objects name="objects">
     <objects name="Control">
@@ -182,7 +185,6 @@
       <object>objects\obj_endPoint</object>
       <object>objects\obj_gridDrawer</object>
       <object>objects\obj_bondDrawer</object>
-      <object>objects\obj_UI</object>
     </objects>
     <objects name="Items">
       <object>objects\obj_atom</object>
@@ -198,6 +200,7 @@
       <objects name="Rotators">
         <object>objects\obj_rotator</object>
       </objects>
+      <object>objects\obj_atomDest</object>
     </objects>
     <objects name="TweenGMS">
       <object>objects\obj_SharedTweener</object>
@@ -217,8 +220,15 @@
       <object>objects\obj_nxtLvl</object>
       <object>objects\obj_lvlSel</object>
     </objects>
+    <objects name="Menu">
+      <object>objects\obj_menu</object>
+      <object>objects\obj_UI</object>
+      <object>objects\obj_menuButton</object>
+      <object>objects\obj_level</object>
+    </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_menu</room>
     <room>rooms\rm_lvl1</room>
     <room>rooms\rm_lvl2</room>
     <room>rooms\rm_lvl3</room>
@@ -228,7 +238,6 @@
     <room>rooms\rm_lvl7</room>
     <room>rooms\rm_template</room>
     <room>rooms\rm_new</room>
-    <room>rooms\room3</room>
   </rooms>
   <help>
     <rtf>help.rtf</rtf>
