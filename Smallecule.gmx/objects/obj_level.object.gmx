@@ -58,15 +58,15 @@ switch(_levelNum)
         break;
         
     case 8:
-        //room_goto(rm_lvl8);
+        room_goto(rm_lvl8);
         break;
         
     case 9:
-        //room_goto(rm_lvl9);
+        room_goto(rm_lvl9);
         break;
         
     case 10:
-        //room_goto(rm_lvl10);
+        room_goto(rm_lvl10);
         break;
 }
 </string>

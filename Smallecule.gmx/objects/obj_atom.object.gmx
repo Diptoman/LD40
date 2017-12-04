@@ -181,6 +181,7 @@ if (instance_exists((_deathColl._leaderId)))
         }
         
         global.roomText = "#LEVEL CLEARED!###Click on Go To Next Level or Level Select on the top right of the menu to continue.";
+        audio_play_sound(snd_victory, 10, 0);
         
         //Save data
         ds_list_replace(global.data, obj_control._level - 1, 1);

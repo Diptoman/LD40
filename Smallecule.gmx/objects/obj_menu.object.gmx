@@ -63,7 +63,7 @@ else
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>var i, j, xOffset = room_width / 2 - 64, yOffset = 300;
+            <string>var i, j, xOffset = room_width / 2 - 32, yOffset = 280;
 for (i = 0; i &lt; 5; i++)
 {
     for (j = 0; j &lt; 2; j++)
@@ -72,6 +72,66 @@ for (i = 0; i &lt; 5; i++)
         a._levelNum = i*2 + j + 1;
         a._hasFinished = ds_list_find_value(global.data, a._levelNum - 1);
     }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Audio
+if (global.music == -1)
+{
+    global.musicList = ds_list_create();
+    ds_list_add(global.musicList, snd_bg1, snd_bg2, snd_bg3, snd_bg4);
+    ds_list_shuffle(global.musicList);
+    global.currentPlayer = 0;
+    global.music = audio_play_sound(ds_list_find_value(global.musicList, global.currentPlayer), 10, 0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Play audio
+if (!audio_is_playing(global.music))
+{
+    global.currentPlayer += 1;
+    if (global.currentPlayer &gt; 3)
+        global.currentPlayer = 0;
+        
+    global.music = audio_play_sound(ds_list_find_value(global.musicList, global.currentPlayer), 10, 0);
 }
 </string>
           </argument>
@@ -105,6 +165,29 @@ draw_text_outline(room_width/2, room_height/2 - 280, "Bonding Bad", 1, c_gray, 8
 draw_set_font(fnt_1);
 
 draw_text(room_width/2, 700, "Created for Ludum Dare 40 in 72 hours by#Diptoman Mukherjee (Programming &amp; design)#Pranjal Bisht (Art)#Joel Montpetit (Audio)");
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="9" enumb="32">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>screen_save("1.png");
 </string>
           </argument>
         </arguments>

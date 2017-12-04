@@ -100,6 +100,37 @@ _level = 999;
         </arguments>
       </action>
     </event>
+    <event eventtype="3" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>///Play audio
+if (!audio_is_playing(global.music))
+{
+    global.currentPlayer += 1;
+    if (global.currentPlayer &gt; 3)
+        global.currentPlayer = 0;
+        
+    global.music = audio_play_sound(ds_list_find_value(global.musicList, global.currentPlayer), 10, 0);
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="6" enumb="61">
       <action>
         <libid>1</libid>
@@ -229,6 +260,7 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
                 current2ndPathPoint = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_pathPoint);
                 current2ndPathPoint._row = _currentRow;
                 current2ndPathPoint._column = _currentColumn;
+                audio_play_sound(snd_itemPlaced, 10, 0);
                 
                 //Set in and outs
                 var columnDist = current2ndPathPoint._column - _currentPathPoint._column;
@@ -300,6 +332,8 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
                         _currentPathPoint._outPoint = current2ndPathPoint;
                         _currentPathPoint.alarm[1] = 1;
                     }
+                    
+                    audio_play_sound(snd_itemPlaced, 10, 0);
                 }
             }
         }
@@ -337,10 +371,12 @@ collSpawnCheck = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize,
 if (collPrim &gt; 0)
 {
     with (collPrim) instance_destroy();
+    audio_play_sound(snd_itemRemoved, 10, 0);
 }
 else if ((collSec &gt; 0) &amp;&amp; (collSpawnCheck &lt; 0))
 {
     with (collSec) instance_destroy();
+    audio_play_sound(snd_itemRemoved, 10, 0);
 }
 </string>
           </argument>
@@ -416,6 +452,7 @@ if (_selected == "binderV_down") &amp;&amp; (_currentRow &gt;= 1) &amp;&amp; (_c
     if (coll &lt;= 0)
     {
         var binder = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + _currentRow*_gridSize, obj_binder_v_down);
+        audio_play_sound(snd_itemPlaced, 10, 0);
     }
 }
 
@@ -426,6 +463,7 @@ if (_selected == "binderV_up") &amp;&amp; (_currentRow &gt;= 1) &amp;&amp; (_cur
     if (coll &lt;= 0)
     {
         var binder = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + _currentRow*_gridSize, obj_binder_v_up);
+        audio_play_sound(snd_itemPlaced, 10, 0);
     }
 }
 
@@ -436,6 +474,7 @@ if (_selected == "binderH_left") &amp;&amp; (_currentColumn &gt;= 1) &amp;&amp; 
     if (coll &lt;= 0)
     {
         var binder = instance_create(_gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_binder_h_left);
+        audio_play_sound(snd_itemPlaced, 10, 0);
     }
 }
 
@@ -446,6 +485,7 @@ if (_selected == "binderH_right") &amp;&amp; (_currentColumn &gt;= 1) &amp;&amp;
     if (coll &lt;= 0)
     {
         var binder = instance_create(_gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_binder_h_right);
+        audio_play_sound(snd_itemPlaced, 10, 0);
     }
 }
 }
@@ -484,6 +524,7 @@ if (_selected == "rotator_plus90")
     {
         var rotator = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_rotator);
         rotator._rotationAngle = 90;
+        audio_play_sound(snd_itemPlaced, 10, 0);
     }
 }
 
@@ -495,6 +536,7 @@ if (_selected == "rotator_minus90")
     {
         var rotator = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_rotator);
         rotator._rotationAngle = -90;
+        audio_play_sound(snd_itemPlaced, 10, 0);
     }
 }
 }

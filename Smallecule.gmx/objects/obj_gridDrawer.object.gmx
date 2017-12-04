@@ -8,6 +8,37 @@
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
+    <event eventtype="0" enumb="0">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>var i, j;
+for(i = 0; i &lt;= obj_control._gridColumns; i++ )
+{
+    for(j = 0; j &lt; obj_control._gridRows; j++ )
+    {
+        a = instance_create(obj_control._gridOffsetX + (i - .5)*obj_control._gridSize, obj_control._gridOffsetY + (j + .5)*obj_control._gridSize, obj_grid);
+        a.alarm[0] = i;
+    }
+}
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
     <event eventtype="8" enumb="0">
       <action>
         <libid>1</libid>
@@ -32,7 +63,7 @@ for(i = 0; i &lt; obj_control._gridColumns; i++ )
 {
     for(j = 0; j &lt; obj_control._gridRows; j++ )
     {
-        draw_sprite(spr_GridBase, 0, obj_control._gridOffsetX + i*obj_control._gridSize, obj_control._gridOffsetY + j*obj_control._gridSize);
+        //draw_sprite(spr_GridBase, 0, obj_control._gridOffsetX + i*obj_control._gridSize, obj_control._gridOffsetY + j*obj_control._gridSize);
         //draw_rectangle(_gridOffsetX + i*_gridSize, _gridOffsetY + j*_gridSize, _gridOffsetX + (i + 1)*_gridSize, _gridOffsetY + (j + 1)*_gridSize, true);
     }
 }

@@ -96,9 +96,23 @@
     <extension index="0">extensions\TweenGMS</extension>
     <extension index="1">extensions\Draw Text Outlined</extension>
   </NewExtensions>
-  <sounds name="sound"/>
+  <sounds name="sound">
+    <sounds name="Bg">
+      <sound>sound\snd_bg1</sound>
+      <sound>sound\snd_bg2</sound>
+      <sound>sound\snd_bg3</sound>
+      <sound>sound\snd_bg4</sound>
+    </sounds>
+    <sounds name="Audio">
+      <sound>sound\snd_itemPlaced</sound>
+      <sound>sound\snd_itemRemoved</sound>
+      <sound>sound\snd_victory</sound>
+      <sound>sound\snd_menuClick</sound>
+    </sounds>
+  </sounds>
   <sprites name="sprites">
     <sprite>sprites\spr_atom</sprite>
+    <sprite>sprites\sprite22</sprite>
     <sprite>sprites\spr_endPoint</sprite>
     <sprite>sprites\spr_spawner</sprite>
     <sprite>sprites\spr_pathPoint</sprite>
@@ -112,6 +126,7 @@
     <sprite>sprites\UI_Bottom</sprite>
     <sprite>sprites\UI_Side</sprite>
     <sprite>sprites\spr_GridBase</sprite>
+    <sprite>sprites\spr_gridbaseCenter</sprite>
     <sprite>sprites\Spr_UI_Button</sprite>
     <sprite>sprites\Spr_UI_Unlocked</sprite>
     <sprite>sprites\spr_waiter</sprite>
@@ -184,6 +199,7 @@
       <object>objects\obj_pathPoint</object>
       <object>objects\obj_pathDrawer</object>
       <object>objects\obj_endPoint</object>
+      <object>objects\obj_grid</object>
       <object>objects\obj_gridDrawer</object>
       <object>objects\obj_bondDrawer</object>
     </objects>
@@ -229,6 +245,7 @@
     </objects>
   </objects>
   <rooms name="rooms">
+    <room>rooms\rm_init</room>
     <room>rooms\rm_menu</room>
     <room>rooms\rm_lvl1</room>
     <room>rooms\rm_lvl2</room>
@@ -237,6 +254,10 @@
     <room>rooms\rm_lvl5</room>
     <room>rooms\rm_lvl6</room>
     <room>rooms\rm_lvl7</room>
+    <room>rooms\rm_lvl8</room>
+    <room>rooms\rm_lvl9</room>
+    <room>rooms\rm_lvl10</room>
+    <room>rooms\rm_end</room>
     <room>rooms\rm_template</room>
     <room>rooms\rm_new</room>
   </rooms>
