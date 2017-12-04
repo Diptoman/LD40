@@ -58,6 +58,10 @@ a._playSpeed = 2;
 a = instance_create(_xOffset + 56*2, _yOffset2, obj_play);
 a._minLevel = 1;
 a._index = 2;
+a._playSpeed = 4;
+a = instance_create(_xOffset + 56*3, _yOffset2, obj_play);
+a._minLevel = 1;
+a._index = 3;
 a._playSpeed = .5;
 </string>
           </argument>

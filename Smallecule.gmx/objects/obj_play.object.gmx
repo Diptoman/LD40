@@ -29,6 +29,8 @@
 
 obj_control._turnTimer = room_speed / _playSpeed;
 
+
+
 if (obj_control._isPlaying == false)
 {
     obj_control._isPlaying = true;

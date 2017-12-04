@@ -28,6 +28,7 @@
             <string>event_inherited();
 image_speed = 0.2;
 _spawnGap = 4;
+_currentGap = 0;
 
 xx = x;
 yy = y;
@@ -75,8 +76,15 @@ else
           <argument>
             <kind>1</kind>
             <string>///Next turn
-alarm[2] = obj_control._turnTimer * _spawnGap;
-instance_create(x, y, obj_atom);
+alarm[2] = obj_control._turnTimer; 
+
+if (_currentGap == 0)
+{
+    instance_create(x, y, obj_atom);
+    _currentGap = _spawnGap;
+}
+
+_currentGap -= 1;
 </string>
           </argument>
         </arguments>
