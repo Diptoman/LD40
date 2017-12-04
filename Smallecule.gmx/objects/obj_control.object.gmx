@@ -328,12 +328,13 @@ _currentPathPoint = -1;
             <kind>1</kind>
             <string>collPrim = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_item_parent, false, false);
 collSec = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_pathPoint, false, false);
+collSpawnCheck = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_spawner, false, false);
 
 if (collPrim &gt; 0)
 {
     with (collPrim) instance_destroy();
 }
-else if (collSec &gt; 0)
+else if ((collSec &gt; 0) &amp;&amp; (collSpawnCheck &lt; 0))
 {
     with (collSec) instance_destroy();
 }
@@ -400,6 +401,10 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
           <argument>
             <kind>1</kind>
             <string>///Place binder
+collPrim = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_item_parent, false, false);
+
+if (collPrim &lt; 0)
+{
 if (_selected == "binderV_down")
 {
     coll = collision_rectangle(_gridOffsetX + (_currentColumn + .25)  * _gridSize, _gridOffsetY + (_currentRow + .75) * _gridSize, _gridOffsetX + (_currentColumn + .75)  * _gridSize, _gridOffsetY + (_currentRow - .75) * _gridSize, obj_item_parent, 0, false);
@@ -439,6 +444,7 @@ if (_selected == "binderH_right")
         var binder = instance_create(_gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_binder_h_right);
     }
 }
+}
 
 coll = -1;
 </string>
@@ -462,6 +468,10 @@ coll = -1;
           <argument>
             <kind>1</kind>
             <string>///Place rotator
+collPrim = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_item_parent, false, false);
+
+if (collPrim &lt; 0)
+{
 if (_selected == "rotator_plus90")
 {
     coll = collision_point(_gridOffsetX + (_currentColumn + .5)  * _gridSize, _gridOffsetY + (_currentRow + .5) * _gridSize, obj_item_parent, 0, false);
@@ -482,6 +492,7 @@ if (_selected == "rotator_minus90")
         var rotator = instance_create(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_rotator);
         rotator._rotationAngle = -90;
     }
+}
 }
 
 coll = -1;

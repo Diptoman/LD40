@@ -105,6 +105,7 @@
     <sprite>sprites\spr_binder</sprite>
     <sprite>sprites\spr_binderH</sprite>
     <sprite>sprites\spr_bond</sprite>
+    <sprite>sprites\spr_bond_end</sprite>
     <sprite>sprites\spr_bond_original</sprite>
     <sprite>sprites\spr_rotator</sprite>
     <sprite>sprites\UI_Bottom</sprite>

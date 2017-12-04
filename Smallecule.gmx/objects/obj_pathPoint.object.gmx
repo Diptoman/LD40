@@ -137,7 +137,7 @@ _pathDrawer._inPoint = id;
             <kind>1</kind>
             <string>draw_set_color(c_white);
 draw_set_font(fnt_1);
-draw_text(x + 16, y + 48, "In " + string(_in) + " Out " + string(_out));
+//draw_text(x + 16, y + 48, "In " + string(_in) + " Out " + string(_out));
 
 
 
