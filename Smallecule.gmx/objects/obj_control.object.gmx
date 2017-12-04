@@ -365,7 +365,7 @@ else if ((collSec &gt; 0) &amp;&amp; (collSpawnCheck &lt; 0))
           <argument>
             <kind>1</kind>
             <string>///Place path point
-if (_selected == "path")
+if (_selected == "path") &amp;&amp; (_isPlaying == false)
 {
 if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
 {
@@ -407,7 +407,7 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
             <string>///Place binder
 collPrim = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_item_parent, false, false);
 
-if (collPrim &lt; 0)
+if (collPrim &lt; 0)  &amp;&amp; (_isPlaying == false)
 {
 if (_selected == "binderV_down") &amp;&amp; (_currentRow &gt;= 1) &amp;&amp; (_currentColumn &gt;= 0)
 {
@@ -474,7 +474,7 @@ coll = -1;
             <string>///Place rotator
 collPrim = collision_point(_gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, obj_item_parent, false, false);
 
-if (collPrim &lt; 0) &amp;&amp; (_currentColumn &gt;= 0) &amp;&amp; (_currentRow &gt;= 0)
+if (collPrim &lt; 0) &amp;&amp; (_currentColumn &gt;= 0) &amp;&amp; (_currentRow &gt;= 0)  &amp;&amp; (_isPlaying == false)
 {
 if (_selected == "rotator_plus90")
 {
@@ -549,7 +549,7 @@ else
 }
 
 //Draw grid
-if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
+if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)  &amp;&amp; (_isPlaying == false)
 {
     draw_set_alpha(.25);
     draw_rectangle(_gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + _currentRow*_gridSize, _gridOffsetX + (_currentColumn + 1)*_gridSize, _gridOffsetY + (_currentRow + 1)*_gridSize, false);
@@ -576,7 +576,7 @@ if (_currentRow &gt; -1) &amp;&amp; (_currentColumn &gt; -1)
           <argument>
             <kind>1</kind>
             <string>///Draw path line
-if (_selected == "path")
+if (_selected == "path") &amp;&amp; (_isPlaying == false)
 {
 if (_currentPathPoint &gt; 0)
 {
@@ -612,7 +612,9 @@ if (_currentPathPoint &gt; 0)
           <argument>
             <kind>1</kind>
             <string>///Draw binder
-if (_selected == "binderV_down")
+if  (_isPlaying == false)
+{
+if (_selected == "binderV_down") 
 {
     if (_currentRow &gt;= 1) &amp;&amp; (_currentColumn &gt;= 0)
     {
@@ -643,6 +645,7 @@ if (_selected == "binderH_right")
         draw_sprite_ext(spr_binderH, 0, _gridOffsetX + _currentColumn*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, -1, 1, 0, c_white, .75);
     }
 }
+}
 </string>
           </argument>
         </arguments>
@@ -664,6 +667,8 @@ if (_selected == "binderH_right")
           <argument>
             <kind>1</kind>
             <string>///Draw rotator
+if (_isPlaying == false)
+{
 if (_selected == "rotator_plus90")
 {
     if ((_currentRow &gt;= 0) &amp;&amp; (_currentColumn &gt;= 0))
@@ -678,6 +683,7 @@ if (_selected == "rotator_minus90")
     {
         draw_sprite_ext(spr_rotator, 0, _gridOffsetX + (_currentColumn + .5)*_gridSize, _gridOffsetY + (_currentRow + .5)*_gridSize, -1, 1, 0, c_white, .75);
     }
+}
 }
 </string>
           </argument>

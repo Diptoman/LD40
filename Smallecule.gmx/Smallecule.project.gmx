@@ -114,6 +114,7 @@
     <sprite>sprites\Spr_UI_Button</sprite>
     <sprite>sprites\spr_waiter</sprite>
     <sprite>sprites\spr_playControls</sprite>
+    <sprite>sprites\spr_re</sprite>
   </sprites>
   <backgrounds name="background">
     <background>background\background0</background>
@@ -209,6 +210,8 @@
       <object>objects\obj_select_rotator_right</object>
       <object>objects\obj_select_rotator_left</object>
       <object>objects\obj_play</object>
+      <object>objects\obj_reset</object>
+      <object>objects\obj_restart</object>
     </objects>
   </objects>
   <rooms name="rooms">
