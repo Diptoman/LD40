@@ -51,7 +51,10 @@ _text = "";
           <argument>
             <kind>1</kind>
             <string>if (obj_control._level &lt; _minLevel)
+{   
+    image_alpha = .5; 
     _alpha = .5;
+}
 </string>
           </argument>
         </arguments>
@@ -74,8 +77,11 @@ _text = "";
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, room_speed / 8, 1.2, 1);
-_mouseIn = false;
+            <string>if (obj_control._level &gt;= _minLevel)
+{
+    TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, room_speed / 8, 1.2, 1);
+    _mouseIn = false;
+}
 </string>
           </argument>
         </arguments>
@@ -98,8 +104,11 @@ _mouseIn = false;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, room_speed / 8, 1, 1.2);
-_mouseIn = true;
+            <string>if (obj_control._level &gt;= _minLevel)
+{
+    TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, room_speed / 8, 1, 1.2);
+    _mouseIn = true;
+}
 </string>
           </argument>
         </arguments>

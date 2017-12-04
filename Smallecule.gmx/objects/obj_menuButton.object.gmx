@@ -3,12 +3,12 @@
   <spriteName>Spr_UI_Button</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>-10000</depth>
+  <depth>0</depth>
   <persistent>0</persistent>
-  <parentName>obj_UI_parent</parentName>
+  <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
   <events>
-    <event eventtype="6" enumb="4">
+    <event eventtype="0" enumb="0">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -25,15 +25,13 @@
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-
-room_goto_next();
+            <string>_mouseIn = false;
 </string>
           </argument>
         </arguments>
       </action>
     </event>
-    <event eventtype="8" enumb="0">
+    <event eventtype="6" enumb="11">
       <action>
         <libid>1</libid>
         <id>603</id>
@@ -50,11 +48,33 @@ room_goto_next();
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>event_inherited();
-draw_self();
-draw_sprite_ext(spr_lvlSel, 0, x, y, image_xscale, image_yscale, 0, c_white, 1);
+            <string>TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, room_speed / 8, 1.2, 1);
+_mouseIn = false;
+</string>
+          </argument>
+        </arguments>
+      </action>
+    </event>
+    <event eventtype="6" enumb="10">
+      <action>
+        <libid>1</libid>
+        <id>603</id>
+        <kind>7</kind>
+        <userelative>0</userelative>
+        <isquestion>0</isquestion>
+        <useapplyto>-1</useapplyto>
+        <exetype>2</exetype>
+        <functionname></functionname>
+        <codestring></codestring>
+        <whoName>self</whoName>
+        <relative>0</relative>
+        <isnot>0</isnot>
+        <arguments>
+          <argument>
+            <kind>1</kind>
+            <string>TweenFire(id, image_scale__, EaseOutQuad, 0, false, 0, room_speed / 8, 1, 1.2);
+_mouseIn = true;
 
-_text = "Clear the board.##All paths/placements will be deleted."
 </string>
           </argument>
         </arguments>

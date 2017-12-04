@@ -3,7 +3,7 @@
   <spriteName>&lt;undefined&gt;</spriteName>
   <solid>0</solid>
   <visible>-1</visible>
-  <depth>100</depth>
+  <depth>-10000</depth>
   <persistent>0</persistent>
   <parentName>&lt;undefined&gt;</parentName>
   <maskName>&lt;undefined&gt;</maskName>
@@ -34,18 +34,18 @@ a = instance_create(_xOffset, _yOffset, obj_select_path);
 a._minLevel = 1;
 
 a = instance_create(_xOffset, _yOffset + 72, obj_select_binder_v_down);
-a._minLevel = 1;
+a._minLevel = 3;
 a = instance_create(_xOffset + 56, _yOffset + 72, obj_select_binder_v_up);
-a._minLevel = 1;
+a._minLevel = 3;
 a = instance_create(_xOffset + 56*2, _yOffset + 72, obj_select_binder_h_left);
-a._minLevel = 1;
+a._minLevel = 4;
 a = instance_create(_xOffset + 56*3, _yOffset + 72, obj_select_binder_h_right);
-a._minLevel = 1;
+a._minLevel = 4;
 
 a = instance_create(_xOffset, _yOffset + 72*2, obj_select_rotator_right);
-a._minLevel = 1;
+a._minLevel = 7;
 a = instance_create(_xOffset + 56, _yOffset + 72*2, obj_select_rotator_left);
-a._minLevel = 1;
+a._minLevel = 7;
 
 a = instance_create(_xOffset, _yOffset2, obj_play);
 a._minLevel = 1;
@@ -100,6 +100,7 @@ draw_sprite(UI_Side, 0, room_width - 262, 0);
 draw_set_halign(fa_left);
 draw_set_valign(fa_top);
 draw_set_color(c_white);
+draw_set_font(fnt_1);
 
 draw_text_ext(20, room_height - 136, global.roomText, -1, 1064);
 </string>
