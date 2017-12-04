@@ -77,7 +77,7 @@ _inPoint = -1;
         <arguments>
           <argument>
             <kind>1</kind>
-            <string>if (_inPoint._outPoint != -1)
+            <string>if !instance_exists(_inPoint._outPoint)
     {
         _inPoint._outPoint = -1;
         _inPoint._out = "";

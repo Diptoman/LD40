@@ -594,7 +594,7 @@ for(i = 0; i &lt; ds_list_size(_immediateBondList); i++)
         draw_sprite_ext(spr_bond, 0, x, y, 1, 1, angle, c_white, 1);}
 }
 
-draw_text(x, y, string(_leaderId));
+//draw_text(x, y, string(_leaderId));
 </string>
           </argument>
         </arguments>
